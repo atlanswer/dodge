@@ -1,53 +1,39 @@
-import { useState } from "react";
-import reactDarkLogo from "/icons/react_dark.svg";
-import reactLightLogo from "/icons/react_light.svg";
-import viteLogo from "/icons/vite.svg";
+import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="mx-auto max-w-1/2 text-center">
-      <div className="flex place-content-center">
-        <a href="https://react.dev" target="_blank" rel="noopener">
-          <img
-            src={reactLightLogo}
-            role="image"
-            alt="React Logo"
-            className="h-24 dark:hidden"
-          />
-          <img
-            src={reactDarkLogo}
-            role="image"
-            alt="React Logo"
-            className="hidden h-24 dark:block"
-          />
-        </a>
-        <a href="https://vite.dev" target="_blank" rel="noopener">
-          <img
-            src={viteLogo}
-            role="image"
-            alt="Vite Logo"
-            className="h-24 animate-spin"
-          />
-        </a>
-      </div>
-      <h1>React + Vite</h1>
-      <div className="card">
-        <button
-          onClick={() => setCount((count) => count + 1)}
-          type="button"
-          className="rounded p-2 outline"
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="mx-auto flex flex-col place-items-center gap-4">
+      <img
+        src="https://assets.codepen.io/9177687/woman-ge0f199f92_640.jpg"
+        className="mt-4 rounded"
+        width={640}
+        crossOrigin="anonymous"
+        title="Click to get detection!"
+        alt="Post landmark detection sample 1"
+      />
+      <img
+        src="https://assets.codepen.io/9177687/woman-g1af8d3deb_640.jpg"
+        className="rounded"
+        width={640}
+        crossOrigin="anonymous"
+        title="Click to get detection!"
+        alt="Post landmark detection sample 1"
+      />
     </div>
   );
+}
+
+async function createPostLandmarker() {
+  const vision = await FilesetResolver.forVisionTasks(
+    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm",
+  );
+  return await PoseLandmarker.createFromOptions(vision, {
+    baseOptions: {
+      modelAssetPath:
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task",
+      delegate: "GPU",
+    },
+    runningMode: "IMAGE",
+    numPoses: 2,
+  });
 }
