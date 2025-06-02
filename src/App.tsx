@@ -53,12 +53,45 @@ export default function App() {
     }
 
     if (runningMode === "VIDEO") {
+      console.debug("setting running mode: image");
       await poseLandmarker.setOptions({ runningMode: "IMAGE" });
       setRunningMode("IMAGE");
     }
 
-    // @ts-expect-error: Trust me bro
-    const res = poseLandmarker.detect(e.target);
+    const canvas = e.currentTarget.getElementsByTagName("canvas")[0];
+    const img = e.currentTarget.getElementsByTagName("img")[0];
+    if (canvas === undefined) {
+      console.error("canvas not found");
+      return;
+    }
+    if (img === undefined) {
+      console.error("img not found");
+      return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (ctx === null) {
+      console.error("couldn't get canvas context");
+      return;
+    }
+    console.debug("clearing canvas...");
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    console.time("detection");
+    const res = poseLandmarker.detect(img);
+    console.timeEnd("detection");
+
+    const drawingUtils = new DrawingUtils(ctx);
+    console.debug("drawing landmarks");
+    for (const landmark of res.landmarks) {
+      drawingUtils.drawLandmarks(landmark, {
+        // biome-ignore lint/style/noNonNullAssertion: Trust me bro
+        radius: (data) => DrawingUtils.lerp(data.from!.z, -0.15, 0.1, 5, 1),
+      });
+      drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS);
+    }
   }
 
   return (
