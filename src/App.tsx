@@ -3,14 +3,15 @@ import {
   FilesetResolver,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 export default function App() {
   const [poseLandmarker, setPoseLandmarker] = useState<PoseLandmarker>();
   const [runningMode, setRunningMode] = useState<"IMAGE" | "VIDEO">("IMAGE");
   const [videoPermission, setVideoPermission] = useState(false);
   const enablePrediction = useRef(false);
+  const videoId = useId();
+  const canvasId = useId();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: Trust me bro
   useEffect(() => {
@@ -37,69 +38,10 @@ export default function App() {
     });
   }
 
-  async function handleClick(
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLButtonElement>,
-  ) {
-    if (
-      e.type === "keydown" &&
-      (e as React.KeyboardEvent).key !== " " &&
-      (e as React.KeyboardEvent).key !== "Enter"
-    ) {
-      return;
-    }
-    if (poseLandmarker === undefined) {
-      console.warn("postLandmarker not initialized yet");
-      return;
-    }
-
-    if (runningMode === "VIDEO") {
-      console.debug("setting running mode: image");
-      await poseLandmarker.setOptions({ runningMode: "IMAGE" });
-      setRunningMode("IMAGE");
-    }
-
-    const canvas = e.currentTarget.getElementsByTagName("canvas")[0];
-    const img = e.currentTarget.getElementsByTagName("img")[0];
-    if (canvas === undefined) {
-      console.error("canvas not found");
-      return;
-    }
-    if (img === undefined) {
-      console.error("img not found");
-      return;
-    }
-
-    const ctx = canvas.getContext("2d");
-    if (ctx === null) {
-      console.error("couldn't get canvas context");
-      return;
-    }
-    console.debug("clearing canvas...");
-    // ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    console.time("detection");
-    const res = poseLandmarker.detect(img);
-    console.timeEnd("detection");
-
-    const drawingUtils = new DrawingUtils(ctx);
-    console.debug("drawing landmarks");
-    for (const landmark of res.landmarks) {
-      drawingUtils.drawLandmarks(landmark, {
-        // biome-ignore lint/style/noNonNullAssertion: Trust me bro
-        radius: (data) => DrawingUtils.lerp(data.from!.z, -0.15, 0.1, 5, 1),
-      });
-      drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS);
-    }
-  }
-
   async function predictWebcam() {
-    const video = document.getElementsByTagName("video")[0];
-    if (video === undefined) return;
-    const canvas = document.getElementById("canvas");
+    const video = document.getElementById(videoId);
+    if (video === null || !(video instanceof HTMLVideoElement)) return;
+    const canvas = document.getElementById(canvasId);
     if (canvas === null || !(canvas instanceof HTMLCanvasElement)) return;
     console.debug("clearing canvas...");
     canvas.width = video.width;
@@ -122,7 +64,7 @@ export default function App() {
     let lastVideoTime = -1;
 
     function predictVideo() {
-      if (video === undefined) return;
+      if (video === undefined || !(video instanceof HTMLVideoElement)) return;
       if (poseLandmarker === undefined) return;
       if (canvas === null || !(canvas instanceof HTMLCanvasElement)) return;
       if (ctx === null) return;
@@ -159,7 +101,7 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto flex flex-col place-items-center gap-8 py-10">
+    <div className="items-center-safe flex flex-col gap-8 py-10">
       <div
         className={`rounded px-4 py-2 ${poseLandmarker ? "bg-green-800" : "bg-yellow-800"}`}
       >
@@ -207,7 +149,7 @@ export default function App() {
       >
         {videoPermission ? "Close Camera" : "Enable Camera"}
       </button>
-      <div className="grid grid-cols-1 grid-rows-1 place-items-center rounded px-4">
+      <div className="justify-items-center-safe grid grid-cols-1 grid-rows-1 rounded px-4">
         <video
           className="-scale-x-100 col-start-1 row-start-1 rounded-[inherit] outline"
           width={1280}
@@ -217,47 +159,13 @@ export default function App() {
           playsInline
           disablePictureInPicture
           disableRemotePlayback
-          id="video"
+          id={videoId}
         ></video>
         <canvas
           className="-scale-x-100 col-start-1 row-start-1 h-full w-full"
-          id="canvas"
+          id={canvasId}
         ></canvas>
       </div>
-
-      <button
-        className={`grid grid-cols-1 grid-rows-1 rounded ${poseLandmarker && "cursor-pointer hover:outline-4 focus:outline-4"}`}
-        onClick={handleClick}
-        onKeyDown={handleClick}
-        type="button"
-        title="Click to get detection!"
-      >
-        <img
-          src="https://assets.codepen.io/9177687/woman-ge0f199f92_640.jpg"
-          className="col-start-1 row-start-1 rounded-[inherit]"
-          width={640}
-          crossOrigin="anonymous"
-          alt="Post landmark detection sample 1"
-        />
-        <canvas className="col-start-1 row-start-1 h-full w-full"></canvas>
-      </button>
-      <button
-        className={`grid grid-cols-1 grid-rows-1 rounded ${poseLandmarker && "cursor-pointer hover:outline-4 focus:outline-4"}`}
-        onClick={handleClick}
-        onKeyDown={handleClick}
-        type="button"
-        title="Click to get detection!"
-      >
-        <img
-          src="https://assets.codepen.io/9177687/woman-g1af8d3deb_640.jpg"
-          className="col-start-1 row-start-1 rounded-[inherit]"
-          width={640}
-          crossOrigin="anonymous"
-          title="Click to get detection!"
-          alt="Post landmark detection sample 2"
-        />
-        <canvas className="col-start-1 row-start-1 h-full w-full"></canvas>
-      </button>
     </div>
   );
 }
