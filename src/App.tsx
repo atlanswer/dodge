@@ -1,14 +1,11 @@
-import {
-  DrawingUtils,
-  FilesetResolver,
-  PoseLandmarker,
-} from "@mediapipe/tasks-vision";
+import { DrawingUtils, PoseLandmarker } from "@mediapipe/tasks-vision";
 import { useEffect, useId, useRef, useState } from "react";
+import { createPostLandmarker } from "src/poseLandmarker";
 
 export default function App() {
   const [poseLandmarker, setPoseLandmarker] = useState<PoseLandmarker>();
-  const [runningMode, setRunningMode] = useState<"IMAGE" | "VIDEO">("IMAGE");
   const [videoPermission, setVideoPermission] = useState(false);
+  const runningMode = useRef<"IMAGE" | "VIDEO">("VIDEO");
   const enablePrediction = useRef(false);
   const videoId = useId();
   const canvasId = useId();
@@ -22,21 +19,6 @@ export default function App() {
       poseLandmarker?.close();
     };
   }, []);
-
-  async function createPostLandmarker() {
-    const vision = await FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm",
-    );
-    return await PoseLandmarker.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath:
-          "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task",
-        delegate: "GPU",
-      },
-      runningMode: runningMode,
-      numPoses: 2,
-    });
-  }
 
   async function predictWebcam() {
     const video = document.getElementById(videoId);
@@ -54,10 +36,10 @@ export default function App() {
       return;
     }
 
-    if (runningMode === "IMAGE") {
+    if (runningMode.current === "IMAGE") {
       console.debug("setting runningMode: video");
       await poseLandmarker.setOptions({ runningMode: "VIDEO" });
-      setRunningMode("VIDEO");
+      runningMode.current = "VIDEO";
     }
 
     const drawingUtils = new DrawingUtils(ctx);

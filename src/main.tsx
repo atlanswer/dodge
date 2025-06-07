@@ -3,8 +3,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "src/App.tsx";
 
-// biome-ignore lint/style/noNonNullAssertion: Trust me bro
-createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root");
+if (root === null) throw Error("Root element not found.");
+
+createRoot(root).render(
   <StrictMode>
     <App />
     <Analytics />

@@ -1,6 +1,6 @@
 {
   "name": "dodge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Dodge if you can",
   "homepage": "https://dodge.atlanswer.com",
   "license": "MIT",
@@ -22,15 +22,15 @@
     "@types/react": "~19.1.6",
     "@types/react-dom": "~19.1.6",
     "@vercel/analytics": "~1.5.0",
-    "@vitejs/plugin-react-oxc": "~0.2.0",
+    "@vitejs/plugin-react-oxc": "~0.2.1",
     "react": "~19.1.0",
     "react-dom": "~19.1.0",
     "tailwindcss": "~4.1.8",
     "turbo": "~2.5.4",
     "typescript": "~5.8.3",
-    "vite": "npm:rolldown-vite@~6.3.17"
+    "vite": "npm:rolldown-vite@~6.3.18"
   },
-  "packageManager": "bun@1.2.13",
+  "packageManager": "bun@1.2.15",
   "engines": {
     "bun": ">=1.2"
   },
