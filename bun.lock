@@ -92,7 +92,7 @@
 
     "@rolldown/binding-win32-x64-msvc": ["@rolldown/binding-win32-x64-msvc@1.0.0-beta.11-commit.0a985f3", "https://registry.npmmirror.com/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.0.0-beta.11-commit.0a985f3.tgz", { "os": "win32", "cpu": "x64" }, "sha512-qsDfpbZb4sUbF4+n1th+JuwOlV17jRZoVwvdfZcyexXHXIzmYzoTpHPL86V0eTdbEK206vx/2NoFjK871CR4cg=="],
 
-    "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-beta.9", "https://registry.npmmirror.com/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.9.tgz", {}, "sha512-e9MeMtVWo186sgvFFJOPGy7/d2j2mZhLJIdVW0C/xDluuOvymEATqz6zKsP0ZmXGzQtqlyjz5sC1sYQUoJG98w=="],
+    "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-beta.11", "https://registry.npmmirror.com/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.11.tgz", {}, "sha512-L/gAA/hyCSuzTF1ftlzUSI/IKr2POHsv1Dd78GfqkR83KMNuswWD61JxGV2L7nRwBBBSDr6R1gCkdTmoN7W4ag=="],
 
     "@tailwindcss/node": ["@tailwindcss/node@4.1.8", "https://registry.npmmirror.com/@tailwindcss/node/-/node-4.1.8.tgz", { "dependencies": { "@ampproject/remapping": "^2.3.0", "enhanced-resolve": "^5.18.1", "jiti": "^2.4.2", "lightningcss": "1.30.1", "magic-string": "^0.30.17", "source-map-js": "^1.2.1", "tailwindcss": "4.1.8" } }, "sha512-OWwBsbC9BFAJelmnNcrKuf+bka2ZxCE2A4Ft53Tkg4uoiE67r/PMEYwCsourC26E+kmxfwE0hVzMdxqeW+xu7Q=="],
 
@@ -130,13 +130,13 @@
 
     "@types/node": ["@types/node@22.15.21", "https://registry.npmmirror.com/@types/node/-/node-22.15.21.tgz", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-EV/37Td6c+MgKAbkcLG6vqZ2zEYHD7bvSrzqqs2RIhbA6w3x+Dqz8MZM3sP6kGTeLrdoOgKZe+Xja7tUB2DNkQ=="],
 
-    "@types/react": ["@types/react@19.1.6", "https://registry.npmmirror.com/@types/react/-/react-19.1.6.tgz", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-JeG0rEWak0N6Itr6QUx+X60uQmN+5t3j9r/OVDtWzFXKaj6kD1BwJzOksD0FF6iWxZlbE1kB0q9vtnU2ekqa1Q=="],
+    "@types/react": ["@types/react@19.1.7", "https://registry.npmmirror.com/@types/react/-/react-19.1.7.tgz", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-BnsPLV43ddr05N71gaGzyZ5hzkCmGwhMvYc8zmvI8Ci1bRkkDSzDDVfAXfN2tk748OwI7ediiPX6PfT9p0QGVg=="],
 
     "@types/react-dom": ["@types/react-dom@19.1.6", "https://registry.npmmirror.com/@types/react-dom/-/react-dom-19.1.6.tgz", { "peerDependencies": { "@types/react": "^19.0.0" } }, "sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw=="],
 
     "@vercel/analytics": ["@vercel/analytics@1.5.0", "https://registry.npmmirror.com/@vercel/analytics/-/analytics-1.5.0.tgz", { "peerDependencies": { "@remix-run/react": "^2", "@sveltejs/kit": "^1 || ^2", "next": ">= 13", "react": "^18 || ^19 || ^19.0.0-rc", "svelte": ">= 4", "vue": "^3", "vue-router": "^4" }, "optionalPeers": ["@remix-run/react", "@sveltejs/kit", "next", "react", "svelte", "vue", "vue-router"] }, "sha512-MYsBzfPki4gthY5HnYN7jgInhAZ7Ac1cYDoRWFomwGHWEX7odTEzbtg9kf/QSo7XEsEAqlQugA6gJ2WS2DEa3g=="],
 
-    "@vitejs/plugin-react-oxc": ["@vitejs/plugin-react-oxc@0.2.1", "https://registry.npmmirror.com/@vitejs/plugin-react-oxc/-/plugin-react-oxc-0.2.1.tgz", { "dependencies": { "@rolldown/pluginutils": "1.0.0-beta.9" }, "peerDependencies": { "vite": "^6.3.0" } }, "sha512-7Lgv7WH+iyOCNLh8GOR392aRSvUWXK5zhE/ZugLh1zcBzFeseS+xYq/g3EoaDxTEazlvjQLnNR2Lciub+/59jg=="],
+    "@vitejs/plugin-react-oxc": ["@vitejs/plugin-react-oxc@0.2.2", "https://registry.npmmirror.com/@vitejs/plugin-react-oxc/-/plugin-react-oxc-0.2.2.tgz", { "dependencies": { "@rolldown/pluginutils": "1.0.0-beta.11" }, "peerDependencies": { "vite": "^6.3.0 || ^7.0.0-beta.0" } }, "sha512-wI3DrcTLOs989T8IxKQZyk49/aHw+sZS/fcI5n9IY8T/nkN8oVGP4S9CWlSiZFR2mcZysuZTacq48yBRIOvX6w=="],
 
     "ansis": ["ansis@4.0.0", "https://registry.npmmirror.com/ansis/-/ansis-4.0.0.tgz", {}, "sha512-P8nrHI1EyW9OfBt1X7hMSwGN2vwRuqHSKJAT1gbLWZRzDa24oHjYwGHvEgHeBepupzk878yS/HBZ0NMPYtbolw=="],
 
