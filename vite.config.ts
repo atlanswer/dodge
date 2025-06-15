@@ -14,5 +14,5 @@ export default defineConfig({
   server: { port: 3000 },
   build: { target: "esnext" },
   preview: { port: 3000 },
-  // experimental: { enableNativePlugin: true },
+  experimental: { enableNativePlugin: true },
 });
