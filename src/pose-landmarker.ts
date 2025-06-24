@@ -2,7 +2,7 @@ import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
 
 export async function createPostLandmarker() {
   const vision = await FilesetResolver.forVisionTasks(
-    "https://unpkg.com/@mediapipe/tasks-vision/wasm",
+    "https://unpkg.com/@mediapipe/tasks-vision/wasm"
   );
   return await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {

@@ -1,6 +1,6 @@
 import { DrawingUtils, PoseLandmarker } from "@mediapipe/tasks-vision";
 import { useEffect, useId, useRef, useState } from "react";
-import { createPostLandmarker } from "src/poseLandmarker";
+import { createPostLandmarker } from "src/pose-landmarker";
 
 export default function App() {
   const [poseLandmarker, setPoseLandmarker] = useState<PoseLandmarker>();
@@ -29,7 +29,9 @@ export default function App() {
     canvas.width = video.width;
     canvas.height = video.height;
     const ctx = canvas.getContext("2d");
-    if (ctx === null) return;
+    if (ctx === null) {
+      return;
+    }
 
     if (poseLandmarker === undefined) {
       console.warn("postLandmarker not initialized yet");
@@ -45,6 +47,7 @@ export default function App() {
     const drawingUtils = new DrawingUtils(ctx);
     let lastVideoTime = -1;
 
+    // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This is perfectly straightforward
     function predictVideo() {
       if (video === undefined || !(video instanceof HTMLVideoElement)) return;
       if (poseLandmarker === undefined) return;
@@ -68,7 +71,7 @@ export default function App() {
             });
             drawingUtils.drawConnectors(
               landmark,
-              PoseLandmarker.POSE_CONNECTIONS,
+              PoseLandmarker.POSE_CONNECTIONS
             );
           }
 
@@ -91,7 +94,6 @@ export default function App() {
       </div>
 
       <button
-        type="button"
         className="col-start-1 row-start-1 rounded bg-sky-500 px-4 py-2 font-semibold outline hover:bg-sky-700 disabled:bg-gray-500"
         disabled={!poseLandmarker}
         onClick={
@@ -128,25 +130,26 @@ export default function App() {
                   });
               }
         }
+        type="button"
       >
         {videoPermission ? "Close Camera" : "Enable Camera"}
       </button>
       <div className="justify-items-center-safe grid grid-cols-1 grid-rows-1 rounded px-4">
         <video
-          className="-scale-x-100 col-start-1 row-start-1 rounded-[inherit] outline"
-          width={1280}
-          height={720}
-          muted
           autoPlay
-          playsInline
+          className="-scale-x-100 col-start-1 row-start-1 rounded-[inherit] outline"
           disablePictureInPicture
           disableRemotePlayback
+          height={720}
           id={videoId}
-        ></video>
+          muted
+          playsInline
+          width={1280}
+        />
         <canvas
           className="-scale-x-100 col-start-1 row-start-1 h-full w-full"
           id={canvasId}
-        ></canvas>
+        />
       </div>
     </div>
   );
