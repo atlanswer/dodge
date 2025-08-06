@@ -23,7 +23,7 @@
     "@types/react-dom": "^19.1.7",
     "@vercel/analytics": "^1.5.0",
     "@vitejs/plugin-react-oxc": "^0.3.0",
-    "effect": "^3.17.4",
+    "effect": "^3.17.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.11",

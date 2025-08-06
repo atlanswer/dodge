@@ -4,22 +4,22 @@
     "": {
       "name": "dodge",
       "devDependencies": {
-        "@biomejs/biome": "^2.1.2",
+        "@biomejs/biome": "^2.1.3",
         "@mediapipe/tasks-vision": "^0.10.22-rc.20250304",
         "@tailwindcss/vite": "^4.1.11",
-        "@types/bun": "^1.2.18",
-        "@types/react": "^19.1.8",
-        "@types/react-dom": "^19.1.6",
+        "@types/bun": "^1.2.19",
+        "@types/react": "^19.1.9",
+        "@types/react-dom": "^19.1.7",
         "@vercel/analytics": "^1.5.0",
         "@vitejs/plugin-react-oxc": "^0.3.0",
-        "effect": "^3.16.16",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
+        "effect": "^3.17.4",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
         "tailwindcss": "^4.1.11",
         "turbo": "^2.5.5",
-        "typescript": "^5.8.3",
-        "ultracite": "^5.0.46",
-        "vite": "npm:rolldown-vite@^7.0.9",
+        "typescript": "^5.9.2",
+        "ultracite": "^5.1.2",
+        "vite": "npm:rolldown-vite@^7.0.12",
       },
     },
   },
@@ -200,7 +200,7 @@
 
     "detect-libc": ["detect-libc@2.0.4", "", {}, "sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA=="],
 
-    "effect": ["effect@3.17.4", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-VD+5bYdIN088c1fCESqYvOKQ22O2dUptO+Chy7SGMqthIVcYBvVlYSgUQT976XJaHOV2Fd0TaW94EYWHOQsbOw=="],
+    "effect": ["effect@3.17.6", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-BDVr3TEI6JpTnsZwDzXlzxDtyMS0cwtfWmhqfL3nl7Be/443+geFYAlVpCy7SCkLCck0NbmFX86LtlCZtCgdxA=="],
 
     "enhanced-resolve": ["enhanced-resolve@5.18.2", "", { "dependencies": { "graceful-fs": "^4.2.4", "tapable": "^2.2.0" } }, "sha512-6Jw4sE1maoRJo3q8MsSIn2onJFbLTOjY9hlx4DZXmOKvLRd1Ok2kXmAGXaafL2+ijsJZ1ClYbl/pmqr9+k4iUQ=="],
 
