@@ -15,9 +15,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.2",
+    "@biomejs/biome": "^2.2.3",
     "@mediapipe/tasks-vision": "^0.10.22-rc.20250304",
-    "@tailwindcss/vite": "^4.1.12",
+    "@tailwindcss/vite": "^4.1.13",
     "@types/bun": "^1.2.21",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
@@ -26,11 +26,11 @@
     "effect": "^3.17.13",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.13",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2",
-    "ultracite": "^5.3.3",
-    "vite": "npm:rolldown-vite@^7.1.5"
+    "ultracite": "^5.3.4",
+    "vite": "npm:rolldown-vite@^7.1.7"
   },
   "packageManager": "bun@1.2.20",
   "engines": {
